@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# This simply sets a custom i3blocks separator.
+
+SEPARATOR='〕〔'
+
+echo $SEPARATOR     # Full text label
+echo $SEPARATOR     # Short text label
+echo '#4f5b66'      # Label color
+
