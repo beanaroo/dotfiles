@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Get battery status from acpi
+# $BLOCK_INSTANCE is an option that can be set in i3block.conf
+BATCALL=$(acpi -b | grep "Battery $BLOCK_INSTANCE")
+
+# Set Status and Percentage variables
+STATUS=$(echo $BATCALL | cut -d':' -f 2 | cut -d',' -f 1)
+PERCENT=$(echo $BATCALL | cut -d',' -f 2 | tr -d %)
+
+# Set Icon
+if [ $STATUS == "Discharging" ] ; then
+    if [ $PERCENT -ge 90 ] ; then
+        ICON=""
+    elif [ $PERCENT -ge 65 ] ; then
+        ICON=""
+    elif [ $PERCENT -ge 40 ] ; then
+        ICON=""
+    elif [ $PERCENT -ge 15 ] ; then
+        ICON=""
+    elif [ $PERCENT -lt 15 ] ; then
+        ICON=""
+    fi
+elif [ $STATUS == "Charging" ] || [ $STATUS == "Full" ] ; then
+    ICON=""
+fi
+
+echo $ICON # Full text label
+echo $ICON # Short text label (Used when status line gets too long)
+
+# Set color value for the above
+if [ $PERCENT -ge 85 ] ; then
+    echo "#a3be8c"
+elif [ $PERCENT  -ge 50 ] ; then
+    echo "#ebcb8b"
+elif [ $PERCENT  -ge 20 ] ; then
+    echo "#d08770"
+elif [ $PERCENT  -lt 20 ] ; then
+    echo "#bf616a"
+fi

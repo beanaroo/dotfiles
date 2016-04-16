@@ -1,0 +1,23 @@
+# File patterns ignored by git
+
+# nvim
+.config/nvim/plugged/
+.netrwhist
+
+# ranger
+.config/ranger/history
+
+# vim
+*.swp
+*.swo
+
+# weechat
+.config/weechat/logs/
+irc.conf
+
+# zsh
+.zcomp*
+.zhistory
+.zstomb
+
+
