@@ -4,6 +4,7 @@ My current environment includes:
 
 - [i3-gaps](https://github.com/Airblader/i3)
 - [Neovim](https://github.com/neovim/neovim)
+- [Rofi](https://github.com/DaveDavenport/rofi)
 - [Ranger](https://github.com/hut/ranger)
 - [Termite](https://github.com/thestinger/termite)
 - [Zsh](https://github.com/zsh-users/zsh)
