@@ -64,7 +64,7 @@ xterm*termName:         xterm-256color
 xterm*locale:           true
 xterm*saveLines:        8192
 xterm*faceName:         monospace
-xterm*faceSize:         11
+xterm*faceSize:         10
 xterm*borderWidth:      0
 XTerm.utf8:             1
 
