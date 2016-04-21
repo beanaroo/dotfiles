@@ -7,12 +7,17 @@
 # ranger
 .config/ranger/history
 
+# systemd
+.config/systemd/user/default.target.wants/
+
 # vim
 *.swp
 *.swo
 
 # weechat
 .config/weechat/logs/
+weechat.log
+plugins.xml.gz
 irc.conf
 
 # zsh
