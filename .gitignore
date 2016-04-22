@@ -17,6 +17,7 @@
 # weechat
 .config/weechat/logs/
 weechat.log
+*.weechattmp
 plugins.xml.gz
 irc.conf
 
