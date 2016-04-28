@@ -46,7 +46,10 @@ set $brown      #ab7967
 #-------------------------#
 
 # Application Launcher
-# bindsym $mod+Escape exec    "rofi -show run"
+bindsym $mod+grave exec    "rofi -show run"
+
+# Window Switcher
+bindsym $mod+Tab exec    "rofi -show window"
 
 # Terminal
 # bindsym $mod+Return exec    "i3-sensible-terminal"
@@ -250,9 +253,6 @@ mode --pango_markup $sysmenu {
 # Start Polkit authentication agent
 # exec --no-startup-id    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
-# Application Launcher
-exec --no-startup-id    "rofi"
-
 # Removable media daemon
 exec --no-startup-id    "udiskie -a"
 
@@ -277,7 +277,7 @@ bar {
         strip_workspace_numbers yes
         status_command  "i3blocks  -c $HOME/.config/i3/i3blocks.conf"
 
-		colors {
+        colors {
             #                    border      backgrnd    text
             background                      $base00
             statusline                                  $base05
