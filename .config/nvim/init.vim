@@ -118,14 +118,14 @@ autocmd WinEnter *      :set cursorline
 " ═══════════════════════════════╡ Navigation ╞═════════════════════════════════
 
 " Use Alt+hjkl as arrow keys
-map <M-h> <Left>
-map! <M-h> <Left>
-map <M-j> <Down>
-map! <M-j> <Down>
-map <M-k> <Up>
-map! <M-k> <Up>
-map <M-l> <Right>
-map! <M-l> <Right>
+noremap <M-h> <Left>
+noremap! <M-h> <Left>
+noremap <M-j> <Down>
+noremap! <M-j> <Down>
+noremap <M-k> <Up>
+noremap! <M-k> <Up>
+noremap <M-l> <Right>
+noremap! <M-l> <Right>
 
 " ═══════════════════════════════╡ Whitespace ╞═════════════════════════════════
 
