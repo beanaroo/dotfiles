@@ -46,6 +46,12 @@ Plug 'junegunn/vim-easy-align'
 " Table aid
 "Plug 'dhruvasagar/vim-table-mode'
 
+" ══════════ Version Control ═══════════
+
+" git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 " ══════ Integrated Development ════════
 
 " Code Linting
