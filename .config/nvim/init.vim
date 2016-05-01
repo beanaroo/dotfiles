@@ -76,6 +76,13 @@ let g:airline#extensions#tabline#show_close_button = 0
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
+" ════════════════════════╡ airblade/vim-gitgutter ╞═══════════════════════════
+let g:gitgutter_sign_added = ''
+let g:gitgutter_sign_modified = ''
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed_first_line = ''
+let g:gitgutter_sign_modified_removed = ''
+
 " ═══════════════════════════╡ benekastah/neomake ╞═════════════════════════════
 let g:neomake_c_enabled_makers = ['gcc']
 autocmd! BufWritePost,BufEnter * Neomake
