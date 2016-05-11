@@ -249,6 +249,7 @@ mode --pango_markup $sysmenu {
 
 # Set desktop wallpaper --!! INSERTED ABOVE TO AVOID PREMATURE SETTING !!--
 #exec --no-startup-id "feh --bg-scale $HOME/Pictures/Wallpapers/blurred.png"
+exec --no-startup-id    "~/.fehbg"
 
 # Start Polkit authentication agent
 # exec --no-startup-id    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
