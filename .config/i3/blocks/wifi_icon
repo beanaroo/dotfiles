@@ -21,7 +21,7 @@ QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }
 # QUALITY=$(sudo grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
 
 # Set Icon
-if [ $STATUS == "down" ] ; then
+if [ $STATUS == "down" ] || [ $STATUS == "dormant" ] ; then
     ICON=""
     COLOR="#4f5b66"
 elif [ $STATUS == "up" ] ; then
