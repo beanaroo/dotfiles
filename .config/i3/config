@@ -6,7 +6,7 @@
 set $mod Mod4
 
 # Set font family.
-font pango:monospace 10
+font pango:monospace 11
 
 # Set border size
 for_window [class="^.*"] border pixel 3
