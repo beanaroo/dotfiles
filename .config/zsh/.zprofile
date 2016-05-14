@@ -1,7 +1,7 @@
 # Env-guard. Useful when using multiplexers.
 if [[ $ENV_SET != yes ]]
 then
-    export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+    export PATH="$(ruby -e 'print Gem.user_dir')/bin:$HOME/.local/bin:$PATH"
     export EDITOR="nvim"
     export VISUAL="nvim"
     export BROWSER="firefox"
