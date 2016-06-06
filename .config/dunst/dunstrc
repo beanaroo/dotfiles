@@ -142,7 +142,7 @@
     browser = /usr/bin/firefox -new-tab
 
     # Align icons left/right/off
-    icon_position = left
+    icon_position = off
 
     # Paths to default icons.
     icon_folders = /usr/share/icons/gnome/32x32/status/:/usr/share/icons/gnome/32x32/devices/
@@ -220,6 +220,11 @@
 [high]
     msg_urgency = critical
     format = "<span foreground="#bf616a" font="13"><b>%s</b></span>\n<span foreground="#d08770">%b</span>"
+
+[play_sound]
+    summary = "*"
+    script = /home/bean/.config/dunst/play_sound.sh
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
