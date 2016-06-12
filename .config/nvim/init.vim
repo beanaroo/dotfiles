@@ -129,6 +129,9 @@ autocmd FocusLost *     :set nocursorline
 autocmd FocusGained *   :set cursorline
 autocmd WinLeave *      :set nocursorline
 autocmd WinEnter *      :set cursorline
+" Split windows to the right and to the bottom
+set splitright
+set splitbelow
 
 " ═══════════════════════════════╡ Navigation ╞═════════════════════════════════
 
