@@ -56,6 +56,8 @@ Plug 'airblade/vim-gitgutter'
 
 " Code Linting
 Plug 'benekastah/neomake'
+" Live Web Preview
+Plug 'jaxbot/browserlink.vim'
 
 call plug#end()
 
