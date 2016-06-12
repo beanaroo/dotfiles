@@ -145,6 +145,12 @@ noremap! <M-k> <Up>
 noremap <M-l> <Right>
 noremap! <M-l> <Right>
 
+" Split pane navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " ═══════════════════════════════╡ Whitespace ╞═════════════════════════════════
 
 " Width of <tab> characters measured in <spaces>
