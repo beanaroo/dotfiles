@@ -46,7 +46,7 @@ set $brown      #ab7967
 #-------------------------#
 
 # Application Launcher
-bindsym $mod+grave exec    "rofi -show run"
+bindsym $mod+grave exec    "zsh -c 'rofi -show run'"
 
 # Window Switcher
 bindsym $mod+Tab exec    "rofi -show window"
@@ -241,15 +241,13 @@ mode --pango_markup $sysmenu {
 #-------------------------#
 
 # Run monitor layout script
-# exec --no-startup-id    "$HOME/.local/bin/monitor-script -l \
-#                         && feh --bg-scale $HOME/Pictures/Wallpapers/blurred.png"
+exec --no-startup-id    "autorandr -c"
 
 # Lock screen
 # exec --no-startup-id    "sleep 1 && $HOME/.local/bin/i3lock-blur.sh"
 
-# Set desktop wallpaper --!! INSERTED ABOVE TO AVOID PREMATURE SETTING !!--
-#exec --no-startup-id "feh --bg-scale $HOME/Pictures/Wallpapers/blurred.png"
-exec --no-startup-id    "~/.fehbg"
+# Set desktop wallpaper 
+# exec --no-startup-id    "~/.fehbg"
 
 # Start Polkit authentication agent
 # exec --no-startup-id    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
