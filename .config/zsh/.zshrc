@@ -63,3 +63,4 @@ esac
 
 # Source extras
 source $ZDOTDIR/.zstomb
+source $ZDOTDIR/.zwork
