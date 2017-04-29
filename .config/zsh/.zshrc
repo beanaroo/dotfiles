@@ -1,4 +1,4 @@
-###--- Environment Variables ---###
+###--- ZSH Framework ---###
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -6,8 +6,11 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 ###--- Run ---###
-# Workaround duplicate prompt on initial tmux session caused by SIGWINCH 
-if [[ $(tmux display-message -p "#S") == 1 ]]; then sleep 0.1 && clear; fi;
+# Workaround duplicate prompt on initial tmux session caused by SIGWINCH
+if [[ $TERM == "tmux-256color" ]]; then sleep 0.1 && clear; fi;
+
+# Rehash
+zstyle ':completion:*' rehash true
 
 ###--- History ---###
 # Ignore duplicate entries
@@ -21,18 +24,19 @@ KEYTIMEOUT=1
 
 ###--- Colour ---###
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/base16-ocean.dark.sh"
+BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-ocean.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 ###--- Aliases ---###
 alias virsh='virsh -c qemu:///system'
 alias virt-viewer='virt-viewer -c qemu:///system'
+alias ssh='TERM=xterm-256color ssh'
 
 # Microsoft Office 2010 via WINE
-alias msonenote="env WINEPREFIX="/home/bean/.local/share/office2010" wine start /Unix /home/bean/.local/share/office2010/dosdevices/c:/users/bean/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ OneNote\ 2010.lnk"
-alias msexcel="env WINEPREFIX="/home/bean/.local/share/office2010" wine start /Unix /home/bean/.local/share/office2010/dosdevices/c:/users/bean/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Excel\ 2010.lnk"
-alias msword="env WINEPREFIX="/home/bean/.local/share/office2010" wine start /Unix /home/bean/.local/share/office2010/dosdevices/c:/users/bean/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Word\ 2010.lnk"
-alias mspowerpnt="env WINEPREFIX="/home/bean/.local/share/office2010" wine start /Unix /home/bean/.local/share/office2010/dosdevices/c:/users/bean/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ PowerPoint\ 2010.lnk"
+#alias msonenote="env WINEPREFIX="/home/bean/.local/share/office2010" wine start /Unix /home/bean/.local/share/office2010/dosdevices/c:/users/bean/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ OneNote\ 2010.lnk"
+#alias msexcel="env WINEPREFIX="/home/bean/.local/share/office2010" wine start /Unix /home/bean/.local/share/office2010/dosdevices/c:/users/bean/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Excel\ 2010.lnk"
+#alias msword="env WINEPREFIX="/home/bean/.local/share/office2010" wine start /Unix /home/bean/.local/share/office2010/dosdevices/c:/users/bean/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Word\ 2010.lnk"
+#alias mspowerpnt="env WINEPREFIX="/home/bean/.local/share/office2010" wine start /Unix /home/bean/.local/share/office2010/dosdevices/c:/users/bean/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ PowerPoint\ 2010.lnk"
 
 # Tmux
 alias tmux='tmux -f $HOME/.config/tmux/tmux.conf'
