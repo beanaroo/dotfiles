@@ -10,6 +10,8 @@
 
 # ranger
 .config/ranger/history
+.config/ranger/bookmarks
+.config/ranger/tagged
 
 # systemd
 .config/systemd/user/default.target.wants/
