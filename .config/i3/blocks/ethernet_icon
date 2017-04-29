@@ -4,31 +4,33 @@
 # $BLOCK_INSTANCE is an option that can be set in i3block.conf
 INTERFACE="${BLOCK_INSTANCE:-eth0}"
 
-# Don't display if interface is not found.
-[[ ! -d /sys/class/net/${INTERFACE} ]] && exit
-
-# Get link status
-STATUS=$(cat /sys/class/net/${INTERFACE}/operstate)
-
-# Get internet status
-ping -q -W 1 -c 1 8.8.8.8 &> /dev/null
-if [[ $? -eq 0 ]]; then
-    ONLINE="yes"
-else
-    ONLINE="no"
-fi
-
 # Set Icon
 ICON=""
 
-# Set Color
-if [ $STATUS == "down" ] ; then
-    COLOR="#4f5b66"
-elif [ $STATUS == "up" ] ; then
-    if [ $ONLINE == "yes" ] ; then
-        COLOR="#a3be8c"
+# Don't display if interface is not found.
+if [[ ! -d /sys/class/net/${INTERFACE} ]]; then
+    COLOR="#4F5B66"
+else
+    # Get link status
+    STATUS=$(cat /sys/class/net/${INTERFACE}/operstate)
+
+    # Get internet status
+    ping -q -W 1 -c 1 8.8.8.8 &> /dev/null
+    if [[ $? -eq 0 ]]; then
+        ONLINE="yes"
     else
-        COLOR="#ebcb8b"
+        ONLINE="no"
+    fi
+
+    # Set Color
+    if [ $STATUS == "down" ] ; then
+        COLOR="#4f5b66"
+    elif [ $STATUS == "up" ] ; then
+        if [ $ONLINE == "yes" ] ; then
+            COLOR="#a3be8c"
+        else
+            COLOR="#ebcb8b"
+        fi
     fi
 fi
 
