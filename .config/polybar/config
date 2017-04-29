@@ -1,0 +1,356 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+base00  = #2B303B
+base01  = #343D46
+base02  = #4F5B66
+base03  = #65737E
+base04  = #A7ADBA
+base05  = #C0C5CE
+base06  = #DFE1E8
+base07  = #EFF1F5
+red     = #BF616A
+orange  = #D08770
+yellow  = #EBCB8B
+green   = #A3BE8C
+cyan    = #96B5B4
+blue    = #8FA1B3
+magenta = #B48EAD
+brown   = #AB7967
+
+[global/wm]
+margin-bottom = 5
+
+[bar/main]
+monitor = ${env:MONITOR:eDP1}
+width = 100%
+height = 28
+
+background = ${colors.base00}
+foreground = ${colors.base05}
+
+overline-size = 2
+overline-color = ${colors.red}
+underline-size = 3
+underline-color = ${colors.base05}
+
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = monospace:size=10;0
+font-1 = monospace:size=10;2
+font-2 = FontAwesome:pixelsize=12;1
+
+modules-left = i3
+modules-center = 
+modules-right = hamster music volume pamixer rootfs homefs memory cpu temperature eth wlan redshift battery date
+
+;wm-restack = i3
+;override-redirect = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+format = <label-state> %{T2}<label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 1
+label-mode-foreground = ${colors.base01}
+label-mode-background = ${colors.blue}
+
+label-focused = %{T3}%name%
+label-focused-foreground = ${colors.base06}
+label-focused-background = ${colors.base03}
+label-focused-underline = ${colors.blue}
+label-focused-padding = 1
+
+label-unfocused = %{T3}%name%
+label-unfocused-foreground = ${colors.base04}
+label-unfocused-background = ${colors.base01}
+label-unfocused-padding = 1
+
+label-urgent = %{T3}%name%
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+
+label-visible = %{T3}%name%
+label-visible-foreground = ${colors.base04}
+label-visible-background = ${colors.base02}
+label-visible-underline = ${colors.base02}
+label-visible-padding = 1
+
+[module/music]
+type = custom/script
+interval = 2
+
+label = %output:0:50:...%
+exec = ~/.config/polybar/music
+
+[module/hamster]
+type = custom/script
+interval = 2
+
+exec = ~/.config/polybar/hamster
+
+format-prefix = %{T3} %{T-}
+format-prefix-foreground = ${colors.magenta}
+
+[module/pamixer]
+type = custom/script
+interval = 1
+
+exec = ~/.config/polybar/pamixer
+
+click-left = pamixer -t
+
+scroll-up = pamixer -i 5
+scroll-down = pamixer -d 5
+
+;[module/volume]
+;type = internal/volume
+;
+;format-volume = <label-volume> <bar-volume>
+;label-volume = %{T3}
+;label-volume-foreground = ${colors.cyan}
+;
+;format-muted = <label-muted>
+;format-muted-foreground = ${colors.base03}
+;label-muted =  ────────
+;
+;bar-volume-width = 10
+;bar-volume-foreground-0 = ${colors.green}
+;bar-volume-foreground-1 = ${colors.green}
+;bar-volume-foreground-2 = ${colors.green}
+;bar-volume-foreground-3 = ${colors.green}
+;bar-volume-foreground-4 = ${colors.yellow}
+;bar-volume-foreground-5 = ${colors.orange}
+;bar-volume-foreground-6 = ${colors.red}
+;bar-volume-gradient = false
+;bar-volume-indicator = |
+;bar-volume-fill = ━
+;bar-volume-empty = ─
+;bar-volume-empty-foreground = ${colors.base05}
+
+[module/rootfs]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+format-mounted = <bar-used>
+format-mounted-prefix = %{T3} %{T-}
+format-mounted-prefix-foreground = ${colors.blue}
+
+bar-used-width = 6
+bar-used-foreground-0 = ${colors.green}
+bar-used-foreground-1 = ${colors.green}
+bar-used-foreground-2 = ${colors.green}
+bar-used-foreground-3 = ${colors.green}
+bar-used-foreground-4 = ${colors.yellow}
+bar-used-foreground-5 = ${colors.orange}
+bar-used-foreground-6 = ${colors.red}
+bar-used-gradient = false
+bar-used-indicator = |
+bar-used-fill = ━
+bar-used-empty = ─
+bar-used-empty-foreground = ${colors.base05}
+
+[module/homefs]
+type = internal/fs
+interval = 25
+
+mount-0 = /home
+
+format-mounted = <bar-used>
+format-mounted-prefix = %{T3} %{T-}
+format-mounted-prefix-foreground = ${colors.yellow}
+
+bar-used-width = 6
+bar-used-foreground-0 = ${colors.green}
+bar-used-foreground-1 = ${colors.green}
+bar-used-foreground-2 = ${colors.green}
+bar-used-foreground-3 = ${colors.green}
+bar-used-foreground-4 = ${colors.yellow}
+bar-used-foreground-5 = ${colors.orange}
+bar-used-foreground-6 = ${colors.red}
+bar-used-gradient = false
+bar-used-indicator = |
+bar-used-fill = ━
+bar-used-empty = ─
+bar-used-empty-foreground = ${colors.base05}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format = <bar-used>
+format-prefix = %{T3} %{T-}
+format-prefix-foreground = ${colors.blue}
+
+bar-used-width = 6
+bar-used-format = %fill%%empty%
+bar-used-foreground-0 = ${colors.green}
+bar-used-foreground-1 = ${colors.green}
+bar-used-foreground-2 = ${colors.green}
+bar-used-foreground-3 = ${colors.green}
+bar-used-foreground-4 = ${colors.yellow}
+bar-used-foreground-5 = ${colors.orange}
+bar-used-foreground-6 = ${colors.red}
+bar-used-gradient = false
+bar-used-fill = ▉
+bar-used-empty = ▉
+bar-used-empty-foreground = ${colors.base03}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format = <bar-load>
+format-prefix = %{T3} %{T-}
+format-prefix-foreground = ${colors.blue}
+
+bar-load-width = 6
+bar-load-format = %fill%%empty%
+bar-load-foreground-0 = ${colors.green}
+bar-load-foreground-1 = ${colors.green}
+bar-load-foreground-2 = ${colors.green}
+bar-load-foreground-3 = ${colors.green}
+bar-load-foreground-4 = ${colors.yellow}
+bar-load-foreground-5 = ${colors.orange}
+bar-load-foreground-6 = ${colors.red}
+bar-load-gradient = false
+bar-load-fill = %{T2}
+bar-load-empty = %{T2}
+bar-load-empty-foreground = ${colors.base03}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 2
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.red}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.orange}
+
+ramp-0 = %{T3}
+ramp-0-foreground = ${colors.blue}
+ramp-1 = %{T3}
+ramp-1-foreground = ${colors.blue}
+ramp-2 = %{T3}
+ramp-2-foreground = ${colors.green}
+ramp-3 = %{T3}
+ramp-3-foreground = ${colors.green}
+ramp-4 = %{T3}
+ramp-4-foreground = ${colors.yellow}
+ramp-5 = %{T3}
+ramp-5-foreground = ${colors.orange}
+ramp-6 = %{T3}
+ramp-6-foreground = ${colors.red}
+
+[module/eth]
+type = internal/network
+interface = enp10s0u1u4
+interval = 3.0
+
+format-connected-prefix = %{T3}  %{T-}
+format-connected-prefix-foreground = ${colors.green}
+label-connected = %linkspeed%
+
+format-disconnected = <label-disconnected>
+label-disconnected-foreground = ${colors.base03}
+label-disconnected = %{T3}" "
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 1.0
+
+format-connected = <ramp-signal>
+label-connected = %essid%
+
+format-disconnected = <label-disconnected>
+label-disconnected = 
+label-disconnected-foreground = ${colors.base03}
+
+ramp-signal-0 = %{T3}
+ramp-signal-0-foreground = ${colors.red}
+ramp-signal-1 = %{T3}
+ramp-signal-1-foreground = ${colors.orange}
+ramp-signal-2 = %{T3}
+ramp-signal-2-foreground = ${colors.orange}
+ramp-signal-3 = %{T3}
+ramp-signal-3-foreground = ${colors.yellow}
+ramp-signal-4 = %{T3}
+ramp-signal-4-foreground = ${colors.green}
+ramp-signal-5 = %{T3}
+ramp-signal-5-foreground = ${colors.green}
+
+[module/redshift]
+type = custom/script
+interval = 5
+
+exec = ~/.config/polybar/redshift.sh
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging>
+
+format-discharging = <ramp-capacity>
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.green}
+
+ramp-capacity-0 = %{T3}
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1 = %{T3}
+ramp-capacity-1-foreground = ${colors.orange}
+ramp-capacity-2 = %{T3}
+ramp-capacity-2-foreground = ${colors.yellow}
+ramp-capacity-3 = %{T3}
+ramp-capacity-3-foreground = ${colors.green}
+ramp-capacity-4 = %{T3}
+ramp-capacity-4-foreground = ${colors.green}
+
+animation-charging-0 = %{T3}
+animation-charging-1 = %{T3}
+animation-charging-2 = %{T3}
+animation-charging-3 = %{T3}
+animation-charging-4 = %{T3}
+animation-charging-foreground = ${colors.yellow}
+animation-charging-framerate = 750
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = %a %-e %b
+time = %H:%M
+
+;format-prefix = 
+;format-prefix-foreground = ${colors.base05}
+;;format-underline = ${colors.magenta}
+
+label = %{T3}%{T-} %date% %{T3}%{T-} %time%
+label-foreground = ${colors.blue}
+
+; vim:ft=dosini
