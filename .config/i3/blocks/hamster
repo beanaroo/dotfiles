@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Set Icon
+ACTIVITY=$(hamster current | cut -d' ' -f 3- | sed 's/@.* / - /')
+ACTIVITY=${ACTIVITY:-"No Activity"}
+
+echo "$ACTIVITY"     # Full text label
+echo "$ACTIVITY"     # Short text label (Used when status line gets too long)
