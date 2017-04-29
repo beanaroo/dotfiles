@@ -80,7 +80,7 @@ rofi.key-run:           SuperL+grave
 rofi.key-window:        SuperL+Tab
 rofi.modi:              window,run
 rofi.terminal:          termite
-rofi.run-shell-command: {terminal} -x "zsh -ic {cmd}"
+rofi.run-shell-command: {terminal} -e "zsh -ic {cmd}"
 rofi.sidebar-mode:      true
 rofi.hide-scrollbar:    true
 rofi.lines:             12
