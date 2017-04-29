@@ -2,21 +2,11 @@
 #    Beanaroo's i3 Configuration    #
 #-----------------------------------#
 
-# Set Windows-button as modifier key.
+# Set super as modifier key.
 set $mod Mod4
 
 # Set font family.
 font pango:monospace 11
-
-# Set border size
-for_window [class="^.*"] border pixel 3
-
-# Set Gaps
-gaps inner 4
-gaps outer 4
-
-# Set Compose key for special characters
-exec --no-startup-id        "setxkbmap -option compose:rctrl"
 
 #-------------------------#
 #    Color Definition     #
@@ -41,50 +31,49 @@ set $blue       #8fa1b3
 set $magenta    #b48ead
 set $brown      #ab7967
 
+set $transparent #00000000
+
 #-------------------------#
 #     Launch Bindings     #
 #-------------------------#
 
 # Application Launcher
-bindsym $mod+grave exec    "zsh -c 'rofi -show run'"
+bindsym $mod+grave exec     "zsh -c 'rofi -m -5 -show run'"
 
 # Window Switcher
-bindsym $mod+Tab exec    "rofi -show window"
+bindsym $mod+Tab exec       "rofi -show window"
 
 # Terminal
-# bindsym $mod+Return exec    "i3-sensible-terminal"
+# bindsym $mod+Return exec "i3-sensible-terminal"
 bindsym $mod+Return exec    "termite -e 'tmux new-session'"
+
+# Lock Screen
+bindsym $mod+Shift+Tab exec "~/.local/bin/lock.sh"
 
 #-------------------------#
 #      Function Keys      #
 #-------------------------#
 
+# Set Compose key for special characters
+exec --no-startup-id                "setxkbmap -option compose:rctrl"
+
 # Screen backlight brightness
-bindsym XF86MonBrightnessUp exec    "brite up"
-bindsym XF86MonBrightnessDown exec  "brite down"
+bindsym XF86MonBrightnessUp exec    "light -A 5 -s intel_backlight"
+bindsym XF86MonBrightnessDown exec  "light -U 5 -s intel_backlight"
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id   "pactl set-sink-volume 0 +5% \
-                                                    && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume exec --no-startup-id   "pactl set-sink-volume 0 -5% \
-                                                    && pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioMute exec --no-startup-id          "pactl set-sink-mute 0 toggle \
-                                                    && pkill -RTMIN+10 i3blocks"
-
+bindsym XF86AudioRaiseVolume exec   "pamixer -i 5"
+bindsym XF86AudioLowerVolume exec   "pamixer -d 5"
+bindsym XF86AudioMute exec          "pamixer -t"
 # Media player controls
-bindsym XF86AudioPlay exec      "playerctl play"
-bindsym XF86AudioPause exec     "playerctl pause"
-bindsym XF86AudioNext exec      "playerctl next"
-bindsym XF86AudioPrev exec      "playerctl previous"
+bindsym XF86AudioPlay exec          "playerctl play-pause"
+bindsym XF86AudioNext exec          "playerctl next"
+bindsym XF86AudioPrev exec          "playerctl previous"
 
-# Calculator button
-bindsym XF86Calculator exec     "gnome-calculator"
-bindsym XF86TouchpadToggle exec     "play -q ~/Resources/Media/Sounds/beep.mp3"
-
-# Screenshots
-bindsym --release Print exec --no-startup-id        "scrot -z ~/media/pictures/screenshots/%Y-%m-%d_%k:%M:%S.png"
-bindsym --release Mod1+Sys_Req exec --no-startup-id   "scrot -zu ~/media/pictures/screenshots/%Y-%m-%d_%k:%M:%S.png"
-bindsym --release Shift+Print exec --no-startup-id  "scrot -zs ~/media/pictures/screenshots/%Y-%m-%d_%k:%M:%S.png"
+## Screenshots
+bindsym --release Print exec        "scrot -z ~/incoming/screenshots/%Y-%m-%d_%k:%M:%S.png"
+bindsym --release Mod1+Sys_Req exec "scrot -zu ~/incoming/screenshots/%Y-%m-%d_%k:%M:%S.png"
+bindsym --release Shift+Print exec  "scrot -zs ~/incoming/screenshots/%Y-%m-%d_%k:%M:%S.png"
 
 #-------------------------#
 #       Workspaces        #
@@ -171,9 +160,15 @@ mode "resize" {
 #         Windows         #
 #-------------------------#
 
+# Set border size
+for_window [class="^.*"] border pixel 2
+#for_window [class="^.*"] border none
+#for_window [class="albert"] border none
+#for_window [class="Synapse"] border none
+
 # Window colors
 #                        border      backgrnd    text       indicator
-client.focused          $base03     $base03     $base05     $base03
+client.focused          $base02     $base02     $base05     $base02
 client.focused_inactive $base00     $base00     $base05     $base00
 client.unfocused        $base00     $base00     $base03     $base00
 client.urgent           $red        $red        $base05     $red
@@ -219,11 +214,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace
 bindsym $mod+Shift+r restart
 
-# exit i3
-# bindsym $mod+Shift+e exec   "i3-nagbar -t warning -m 'Do you really want to exit i3?' -b 'Yes, end session.' 'i3-msg exit'"
-
 # Power menu
-set $sysmenu "  [<b>r</b>]estart - [<b>l</b>]ogout - [<b>s</b>]uspend - re[<b>b</b>]oot - po[<b>w</b>]eroff  "
+set $sysmenu "  [r]estart - [l]ogout - [s]uspend - re[b]oot - po[w]eroff  "
 bindsym $mod+Shift+e      mode $sysmenu
 
 mode --pango_markup $sysmenu {
@@ -240,51 +232,72 @@ mode --pango_markup $sysmenu {
 #     Session Startup     #
 #-------------------------#
 
-# Run monitor layout script
-exec --no-startup-id    "autorandr -c"
-
-# Lock screen
-# exec --no-startup-id    "sleep 1 && $HOME/.local/bin/i3lock-blur.sh"
-
-# Set desktop wallpaper 
-# exec --no-startup-id    "~/.fehbg"
-
-# Start Polkit authentication agent
-# exec --no-startup-id    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-
-# Removable media daemon
-exec --no-startup-id    "udiskie -a"
-
-# Auto hide mouse cursor
-exec --no-startup-id    "unclutter"
-
-# Notification Daemon
-exec --no-startup-id    "dunst"
+# Monitor Layout
+exec --no-startup-id        "autorandr -c"
 
 # Window Compositing
-exec --no-startup-id    "compton --config $HOME/.config/compton/config"
+exec_always --no-startup-id "compton --config $HOME/.config/compton/config"
+
+# Set desktop wallpaper 
+exec --no-startup-id        "hsetroot -solid '#2B303B'"
+
+# Start Polkit authentication agent
+exec --no-startup-id        "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+# Removable media daemon
+exec --no-startup-id        "udiskie -a"
+
+# Auto hide mouse cursor
+exec --no-startup-id        "unclutter"
+
+# Notification Daemon
+exec_always --no-startup-id "pkill dunst; dunst"
+
+# Lock screen
+#exec_always --no-startup-id    "i3lock -u -i $HOME/.local/share/locked.png"
+
+# Redshift
+exec --no-startup-id        "redshift"
+
+#-------------------------#
+#        polybar          #
+#-------------------------#
+
+exec_always --no-startup-id "~/.local/bin/polystart.sh"
+exec --no-startup-id        "~/.local/bin/xeventbind resolution ~/.local/bin/polystart.sh"
+
 
 #-------------------------#
 #         i3bar           #
 #-------------------------#
 
 # Start i3bar to display a workspace bar
-bar {
+#bar {
+#   
+#        #i3bar_command i3bar -t
+#        position        top
+#        #height          36
+#        tray_output     none
+#        #workspace_buttons no
+#        #binding_mode_indicator no
+#
+#        #colors {
+#        #    background  $000000
+#        #}
+#
+#        strip_workspace_numbers yes
+#        status_command  "i3blocks  -c $HOME/.config/i3/i3blocks.conf"
+#        colors {
+#            #                    border      backgrnd    text
+#            background                      $base00
+#            statusline                                  $base05
+#            separator           $base04
+#
+#            focused_workspace   $base04     $base03     $base05
+#            active_workspace    $base03     $base02     $base04
+#            inactive_workspace  $base02     $base01     $base03
+#            urgent_workspace    $base03     $red        $base05
+#            binding_mode        $base04       $blue       $base00
+#        }
+#}
 
-        position        top
-        tray_output     none
-        strip_workspace_numbers yes
-        status_command  "i3blocks  -c $HOME/.config/i3/i3blocks.conf"
-
-        colors {
-            #                    border      backgrnd    text
-            background                      $base00
-            statusline                                  $base05
-            separator           $base04
-
-            focused_workspace   $base04     $base03     $base05
-            active_workspace    $base03     $base02     $base04
-            inactive_workspace  $base02     $base01     $base03
-            urgent_workspace    $base03     $red        $base05
-        }
-}
