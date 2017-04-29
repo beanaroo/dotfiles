@@ -6,7 +6,7 @@ mouse_autohide = false
 allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
-clickable_url = true
+#clickable_url = true
 font = Monospace 11
 scrollback_lines = 10000
 search_wrap = true
@@ -20,7 +20,7 @@ cursor_blink = system
 cursor_shape = underline
 
 # $BROWSER is used by default
-browser = firefox
+# browser = firefox
 
 # set size hints for the window
 #size_hints = false
@@ -66,13 +66,13 @@ color21 = #dfe1e8
 
 [hints]
 #font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
+foreground = #343d46
+background = #ebcb8b
 #active_foreground = #e68080
 #active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
+padding = 2
+border = #343d46
 #border_width = 0.5
-#roundness = 2.0
+roundness = 1.0
 
 # vim: ft=dosini cms=#%s
