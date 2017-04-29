@@ -8,6 +8,11 @@
 " │                                  Plugins                                   │
 " ╰────────────────────────────────────────────────────────────────────────────╯
 
+" Fix ctrl+h
+if has('nvim')
+     nmap <BS> <C-W>h
+endif
+
 " ═══════════════════════════╡ junegunn/vim-plug ╞══════════════════════════════
 
 call plug#begin('~/.config/nvim/plugged')
@@ -24,6 +29,8 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 " Filetype icons
 Plug 'ryanoasis/vim-devicons'
+" Neoterm
+Plug 'kassio/neoterm'
 
 " ════════════ Navigation ══════════════
 
@@ -31,11 +38,25 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'easymotion/vim-easymotion'
 " Buffer navigation
 Plug 'jeetsukumaran/vim-buffergator'
+" Vim-tmux-navigation
+Plug 'christoomey/vim-tmux-navigator'
 
 " ═══════ Filetype extensions ══════════
 
 " Advanced Pandoc markdown
 Plug 'vim-pandoc/vim-pandoc' | Plug 'vim-pandoc/vim-pandoc-syntax'
+" XML Tools
+Plug 'othree/xml.vim'
+" CSV Tools
+Plug 'chrisbra/csv.vim'
+" Ansible YAML
+Plug 'pearofducks/ansible-vim'
+" Terraform HCL and JSON
+Plug 'hashivim/vim-terraform'
+" Log4
+Plug 'vim-scripts/log4j.vim'
+" Nginx
+Plug 'vim-scripts/nginx.vim'
 
 " ═════════════ Editing ════════════════
 
@@ -45,6 +66,12 @@ Plug 'PeterRincker/vim-argumentative'
 Plug 'junegunn/vim-easy-align'
 " Table aid
 "Plug 'dhruvasagar/vim-table-mode'
+" Auto completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Snippets
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Multiple Cursors
+Plug 'terryma/vim-multiple-cursors'
 
 " ══════════ Version Control ═══════════
 
@@ -54,10 +81,22 @@ Plug 'airblade/vim-gitgutter'
 
 " ══════ Integrated Development ════════
 
+" Tag bar
+Plug 'majutsushi/tagbar'
 " Code Linting
-Plug 'benekastah/neomake'
+"Plug 'benekastah/neomake'
 " Live Web Preview
 Plug 'jaxbot/browserlink.vim'
+" Vim-Go
+Plug 'fatih/vim-go'
+" Deoplete-Go
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+" Gocode autocompletion
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+" Deoplete-jedi
+Plug 'zchee/deoplete-jedi'
+" Go Compiler
+Plug 'rjohnsondev/vim-compiler-go'
 
 call plug#end()
 
@@ -73,12 +112,16 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#buffers_label = 'b'
 let g:airline#extensions#tabline#tabs_label = 't'
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#hunks#hunk_symbols = [' ', ' ', ' ']
+let airline#extensions#default#section_use_groupitems = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#csv#enabled = 1
 
 " ════════════════════════╡ junegunn/vim-easy-align ╞═══════════════════════════
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" ════════════════════════╡ airblade/vim-gitgutter ╞═══════════════════════════
+" ════════════════════════╡ airblade/vim-gitgutter ╞════════════════════════════
 let g:gitgutter_sign_added = ''
 let g:gitgutter_sign_modified = ''
 let g:gitgutter_sign_removed = ''
@@ -86,13 +129,26 @@ let g:gitgutter_sign_removed_first_line = ''
 let g:gitgutter_sign_modified_removed = ''
 
 " ═══════════════════════════╡ benekastah/neomake ╞═════════════════════════════
-let g:neomake_c_enabled_makers = ['gcc']
-autocmd! BufWritePost,BufEnter * Neomake
-let g:neomake_logfile='/tmp/error.log'
-let g:neomake_open_list = 2
-let g:neomake_error_sign = { 'text': '', 'texthl': 'NeoErrorMsg' }
-let g:neomake_warning_sign = { 'text': '', 'texthl': 'NeoWarningMsg' }
+"let g:neomake_c_enabled_makers = ['gcc']
+"autocmd! BufWritePost,BufEnter * Neomake
+"let g:neomake_logfile='/tmp/error.log'
+"let g:neomake_open_list = 2
+"let g:neomake_error_sign = { 'text': '', 'texthl': 'NeoErrorMsg' }
+"let g:neomake_warning_sign = { 'text': '', 'texthl': 'NeoWarningMsg' }
 
+" ════════════════════════════╡ Shougo/deoplete ╞═══════════════════════════════
+let g:deoplete#enable_at_startup = 1
+
+" ════════════════════════════╡ fatih/vim-go ╞═══════════════════════════════
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+" ══════════════════════╡ rjohnsondev/vim-compiler-go ╞════════════════════════
+let g:golang_goroot = "/usr/lib/go"
 
 " ╭────────────────────────────────────────────────────────────────────────────╮
 " │                              General Config                                │
@@ -106,7 +162,16 @@ set timeoutlen=1000 ttimeoutlen=0
 " Don't redraw screen for non-typed macros
 set lazyredraw
 
-" ═════════════════════════════╡ User Interface ╞═══════════════════════════════
+" ═══════════════════════════════╡ Proofing ╞═══════════════════════════════════
+
+" Create directory on save
+function WriteCreatingDirs()
+    execute ':silent !mkdir -p %:h'
+    write
+endfunction
+command W call WriteCreatingDirs()
+
+" ═══════════════════════════════╡ Appearance ╞═════════════════════════════════
 "
 " No sounds
 set visualbell
@@ -135,6 +200,9 @@ set splitbelow
 
 " ═══════════════════════════════╡ Navigation ╞═════════════════════════════════
 
+" Synchronise registers between windows
+autocmd CursorHold,FocusGained,FocusLost * rshada|wshada
+
 " Use Alt+hjkl as arrow keys
 noremap <M-h> <Left>
 noremap! <M-h> <Left>
@@ -145,11 +213,11 @@ noremap! <M-k> <Up>
 noremap <M-l> <Right>
 noremap! <M-l> <Right>
 
-" Split pane navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" Split pane navigation (now handled by tmux-navigation)
+"nnoremap <c-j> <c-w>j
+"nnoremap <c-k> <c-w>k
+"nnoremap <c-l> <c-w>l
+"nnoremap <c-h> <c-w>h
 
 " ═══════════════════════════════╡ Whitespace ╞═════════════════════════════════
 
@@ -169,6 +237,8 @@ set listchars=tab:→\ ,space:·,eol:↵
 "nnoremap p p=`]<C-o>
 " Auto indent pasted text
 "nnoremap P P=`]<C-o>
+" Delete trailing whitespace upon saving
+autocmd BufWritePre * %s/\s\+$//e
 
 " ═══════════════════════════════╡ Searching ╞══════════════════════════════════
 
@@ -195,7 +265,7 @@ set t_Co=256
 " Optimize colors for dark background
 set background=dark
 " Set colorscheme
-colorscheme base16-colors
+colorscheme base16-ocean
 " Paint margin (see textwidth)
 "let &colorcolumn=join(range(100,999),",")
 
@@ -229,3 +299,10 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 nmap <C-S-P> :call <SID>SynStack()<CR>
+
+" ╭────────────────────────────────────────────────────────────────────────────╮
+" │                             Filetype Config                                │
+" ╰────────────────────────────────────────────────────────────────────────────╯
+
+" ═══════════════════════════╡ Yaml ╞═════════════════════════════
+au FileType yaml setl sw=2 sts=2 ts=2
