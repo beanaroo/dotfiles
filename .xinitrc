@@ -32,6 +32,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-#exec /usr/bin/i3 -V -d all >~/i3log-$(date +'%F-%k-%M-%S') 2>&1
 #exec i3 -V >> ~/i3log-$(date +'%F-%k-%M-%S') 2>&1
+autorandr -c
 exec i3
