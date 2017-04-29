@@ -2,7 +2,7 @@
 
 # This simply sets a custom i3blocks separator.
 
-SEPARATOR='〕'
+SEPARATOR=']'
 
 echo $SEPARATOR     # Full text label
 echo $SEPARATOR     # Short text label
