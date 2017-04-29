@@ -13,12 +13,17 @@ paint-on-overlay = true;
 glx-swap-method = 6;
 glx-no-stencil = true;
 glx-no-rebind-pixmap = true;
+glx-use-copysubbuffersmesa = true;
+xrender-sync = true;
+xrender-sync-fence = true;
+force-win-blend = true;
 
 # Unredirect full-screen windows. (Fixes freezing / 60fps)
-unredir-if-possible=true; 
+unredir-if-possible = true; 
 
 # Vertical Sync 
-#vsync = "opengl-swc"; # DISABLED: Enabled on driver level.
+vsync = "opengl-mswc"; # DISABLED: Enabled on driver level.
+sw-opti = true;
 
 # Window tracking
 use-ewmh-active-win = true;
@@ -30,8 +35,8 @@ shadow = true;			    # Enabled client-side shadows on windows.
 no-dock-shadow = false;		# Avoid drawing shadows on dock/panel windows.
 no-dnd-shadow = false;		# Don't draw shadows on DND windows.
 clear-shadow = true;		# Zero the part of the shadow's mask behind the window
-shadow-radius = 4;		    # The blur radius for shadows.
-shadow-offset-x = -5;		# The left offset for shadows.
+shadow-radius = 8;		    # The blur radius for shadows.
+shadow-offset-x = -12;		# The left offset for shadows.
 shadow-offset-y = -5;		# The top offset for shadows.
 shadow-opacity = 0.7;		# The translucency for shadows.
 # shadow-exclude = [ "n:e:Notification" ];	# Exclude conditions for shadows.
@@ -41,13 +46,14 @@ menu-opacity = 0.9;			# The opacity for menus. (default 1.0)
 
 # Fading
 fading = true;			    # Fade windows during opacity changes.
-fade-delta = 4;		        # The time between steps in a fade in milliseconds.
-fade-in-step = 0.07;		# Opacity change between steps while fading in.
-fade-out-step = 0.03;		# Opacity change between steps while fading out.
-# no-fading-openclose = true;	# Fade windows in/out when opening/closing.
+fade-delta = 6;		        # The time between steps in a fade in milliseconds.
+fade-in-step = 0.04;		# Opacity change between steps while fading in.
+fade-out-step = 0.02;		# Opacity change between steps while fading out.
+#no-fading-openclose = true;	# Fade windows in/out when opening/closing.
+no-fading-destroyed-argb = true;
 
 # Other
-inactive-dim = 0.1;		    # Dim inactive windows. (0.0 - 1.0, defaults to 0).
+inactive-dim = 0.15;		# Dim inactive windows. (0.0 - 1.0, defaults to 0).
 mark-wmwin-focused = true;	# Try to detect WM windows and mark them as active.
 mark-ovredir-focused = true;
 detect-rounded-corners = true;
@@ -58,11 +64,17 @@ wintypes:
   tooltip = { fade = true; shadow = false; opacity = 1.0; };
 };
 
+
 shadow-exclude = [
   "name = 'Notification'"
+  , "name *= 'polybar'"
   , "class_g = 'Conky'"
+  , "class_g = 'albert'"
   , "class_g = 'Synapse'"
   , "class_g ?= 'Notify-osd'"
+  , "class_g ?= 'i3bar'"
+  , "class_g ?= 'i3-frame'"
+  , "class_g ?= 'termite'"
 
   # Exclude special Firefox/Thunderbird dropdowns.
   # Ref: https://github.com/chjj/compton/issues/247
@@ -70,4 +82,4 @@ shadow-exclude = [
   , "class_g = 'Thunderbird' && argb"
 ];
 
-# fade-exclude = [ "name *= 'i3lock'"];
+#fade-exclude = [ "name" = 'i3lock' ];
