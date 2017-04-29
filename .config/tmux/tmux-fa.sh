@@ -2,64 +2,46 @@
 
 case "$1" in
 
-    -session) 
-        echo " "
+    #)       echo ""
+        #    ;;
+    #)       echo ""
+        #    ;;
+    youtube-viewer|youtube-dl)       echo " "
         ;;
-    -pane)
-        echo " "
+    ssh|scp)                echo " "
         ;;
-    -cpu)
-        echo " $(ps --pid $2 --ppid $2 -So pcpu= | paste -sd+ | bc)"
+    dmesg|journalctl)       echo " "
         ;;
-    -mem)
-        echo " $(ps --pid $2 --ppid $2 -So pmem= | paste -sd+ | bc)"
+    gdb|coredumpctl)        echo " "
         ;;
-    -cmd)
-        case "$2" in
-
-            #)       echo ""
-            #    ;;
-            #)       echo ""
-            #    ;;
-            youtube-viewer|youtube-dl)       echo " "
-                                    ;;
-            ssh|scp)                echo " "
-                                    ;;
-            dmesg|journalctl)       echo " "
-                                    ;;
-            gdb|coredumpctl)        echo " "
-                                    ;;
-            git)                    echo " "
-                                    ;;
-            mutt)                   echo " "
-                                    ;;
-            mpv|gnome-mpv|ffmpeg)   echo " "
-                                    ;;
-            parted|fdisk|gdisk)     echo " "
-                                    ;;
-            steel|kpcli)            echo " "
-                                    ;;
-            rtv)                    echo " "
-                                    ;;
-            ranger)                 echo " "
-                                    ;;
-            less|more)              echo " "
-                                    ;;
-            virsh)                  echo "  "
-                                    ;;
-            issi|WeeChat)                  echo " "
-                                    ;;
-            htop|top)               echo " "
-                                    ;;
-            vi|vim|nvim)            echo " "
-                                    ;;
-            man)                    echo " "
-                                    ;;
-            zsh)                    echo ""
-                                    ;;
-            *)                      echo ""
-                                    ;;
-        esac
+    git)                    echo " "
         ;;
-
+    mutt)                   echo " "
+        ;;
+    mpv|gnome-mpv|ffmpeg)   echo " "
+        ;;
+    parted|fdisk|gdisk)     echo " "
+        ;;
+    steel|kpcli)            echo " "
+        ;;
+    rtv)                    echo " "
+        ;;
+    ranger)                 echo " "
+        ;;
+    less|more)              echo " "
+        ;;
+    virsh)                  echo "  "
+        ;;
+    issi|WeeChat)                  echo " "
+        ;;
+    htop|top)               echo " "
+        ;;
+    vi|vim|nvim)            echo " "
+        ;;
+    man)                    echo " "
+        ;;
+    zsh)                    echo ""
+        ;;
+    *)                      echo ""
+        ;;
 esac
