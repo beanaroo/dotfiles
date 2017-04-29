@@ -51,7 +51,7 @@ font-1 = monospace:size=10;2
 font-2 = FontAwesome:pixelsize=12;1
 
 modules-left = i3
-modules-center = 
+modules-center =
 modules-right = hamster music volume pamixer rootfs homefs memory cpu temperature eth wlan redshift battery date
 
 ;wm-restack = i3
@@ -98,13 +98,13 @@ type = custom/script
 interval = 2
 
 label = %output:0:50:...%
-exec = ~/.config/polybar/music
+exec = ~/.config/polybar/music.sh
 
 [module/hamster]
 type = custom/script
 interval = 2
 
-exec = ~/.config/polybar/hamster
+exec = ~/.config/polybar/hamster.sh
 
 format-prefix = %{T3} %{T-}
 format-prefix-foreground = ${colors.magenta}
@@ -113,7 +113,7 @@ format-prefix-foreground = ${colors.magenta}
 type = custom/script
 interval = 1
 
-exec = ~/.config/polybar/pamixer
+exec = ~/.config/polybar/pamixer.sh
 
 click-left = pamixer -t
 
