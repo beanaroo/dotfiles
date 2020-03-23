@@ -8,6 +8,12 @@ set $mod Mod4
 # Set font family.
 font pango:monospace 11
 
+# Gaps
+gaps inner 10
+gaps outer 3
+gaps top 38
+gaps bottom 38
+
 #-------------------------#
 #    Color Definition     #
 #-------------------------#
