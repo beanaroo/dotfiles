@@ -51,8 +51,8 @@ bindsym $mod+Escape exec     "zsh -c 'rofi -m -5 -show drun'"
 bindsym $mod+Tab exec       "rofi -show window"
 
 # Terminal
-# bindsym $mod+Return exec "i3-sensible-terminal"
-bindsym $mod+Return exec    "termite -e 'tmux new-session'"
+bindsym $mod+Return exec    "kitty"
+#bindsym $mod+Return exec    "kitty -- /usr/bin/tmux new-session"
 
 # Lock Screen
 bindsym $mod+Shift+Tab exec "~/.local/bin/lock.sh"
