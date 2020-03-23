@@ -1,0 +1,148 @@
+/*
+ * ROFI color theme
+ *
+ * Based on Base16 Ocean Color Scheme
+ *
+*/
+
+
+configuration {
+  display-drun:  "";
+  display-run:   "";
+  display-window:  "";
+  sidebar-mode:  false;
+  show-icons:    true;
+  window-format: "{w:1} {t}";
+}
+
+* {
+  base00: #2b303b;
+  base01: #343d46;
+  base02: #4f5b66;
+  base03: #65737e;
+  base04: #a7adba;
+  base05: #c0c5ce;
+  base06: #dfe1e8;
+  base07: #eff1f5;
+  base08: #bf616a;
+  base09: #d08770;
+  base0A: #ebcb8b;
+  base0B: #a3be8c;
+  base0C: #96b5b4;
+  base0D: #8fa1b3;
+  base0E: #b48ead;
+  base0F: #ab7967;
+
+  spacing: 0;
+  background-color: transparent;
+
+  font: "monospace 12";
+}
+
+window {
+  transparency: "real";
+  background-color: @base00;
+}
+
+mainbox {
+  children: [inputbar, message, listview];
+  spacing: 30px;
+  padding: 30px 0;
+  border: 4px;
+  border-color: @base0D;
+}
+
+inputbar {
+  padding: 0 30px;
+  children: [textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+  text-color: @base0D;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: "❯";
+  margin: 0 1ch 0 0;
+  text-color: @base0D;
+}
+
+entry {
+  text-color: @base05;
+}
+
+case-indicator {
+  text-color: @base0F;
+}
+
+mode-switcher, message {
+  border: 1px 0;
+  border-color: @base0D;
+}
+
+button, textbox {
+  background-color: @base03;
+  text-color: @base07;
+  padding: 5px;
+}
+
+button selected {
+  background-color: @base0D;
+}
+
+listview {
+  scrollbar: false;
+  margin: 0 15px 0 15px;
+  lines: 10;
+}
+
+scrollbar {
+  background-color: @base03;
+  handle-color: @base0D;
+  handle-width: 10px;
+  border: 0 1px;
+  border-color: @base0D;
+  margin: 0 0 0 20px;
+}
+
+element {
+  padding: 5px;
+  color: @base05;
+  background-color: transparent;
+  children: [element-icon, element-text];
+}
+
+element-text {
+  padding: 5px 0px 0px 0px;
+}
+
+element-icon {
+  size: 3ch;
+}
+
+element normal.normal, element alternate.normal {
+}
+
+element normal.active, element alternate.active {
+  color: @base0B;
+}
+
+element normal.urgent, element alternate.urgent {
+  color: @base08;
+}
+
+element selected.normal {
+  background-color: @base03;
+}
+
+element selected.active {
+  background-color: @base0B;
+  color: @base07;
+}
+
+element selected.urgent {
+  background-color: @base08;
+  color: @base07;
+}
+
