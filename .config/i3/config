@@ -244,11 +244,11 @@ mode --pango_markup $sysmenu {
 # Monitor Layout
 exec_always --no-startup-id "autorandr -c"
 
+# Set desktop wallpaper
+exec_always --no-startup-id  "sleep 5; ~/.fehbg"
+
 # Window Compositing
 exec_always --no-startup-id "picom --experimental-backends"
-
-# Set desktop wallpaper 
-exec --no-startup-id        "hsetroot -solid '#2B303B'"
 
 # Start Polkit authentication agent
 exec --no-startup-id        "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
