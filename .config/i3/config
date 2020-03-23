@@ -65,8 +65,8 @@ bindsym $mod+Shift+Tab exec "~/.local/bin/lock.sh"
 exec --no-startup-id                "setxkbmap -option compose:rctrl"
 
 # Screen backlight brightness
-bindsym XF86MonBrightnessUp exec    "light -A 5 -s intel_backlight"
-bindsym XF86MonBrightnessDown exec  "light -U 5 -s intel_backlight"
+bindsym XF86MonBrightnessUp exec    "light -A 5"
+bindsym XF86MonBrightnessDown exec  "light -U 5"
 
 # Volume control
 bindsym XF86AudioRaiseVolume exec   "pamixer -i 5"
