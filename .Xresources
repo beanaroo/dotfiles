@@ -68,13 +68,6 @@ xterm*faceSize:         10
 xterm*borderWidth:      0
 XTerm.utf8:             1
 
-! Urxvt Terminal Emulator
-URxvt.urgentOnBell:    on
-URxvt.cursorUnderline: true
-URxvt.imLocale:        en_NZ.UTF-8
-URxvt.scrollBar:       false
-URxvt.font:            xft:monospace:size=11:antialias=true:hinting=true:hintstyle=hintfull:autohint=false
-
 ! Rofi
 rofi.key-run:           SuperL+grave
 rofi.key-window:        SuperL+Tab
