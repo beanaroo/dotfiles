@@ -269,7 +269,7 @@ exec_always --no-startup-id "pkill dunst; dunst"
 #exec_always --no-startup-id    "~/.local/bin/lock.sh"
 
 # Redshift
-exec --no-startup-id        "redshift"
+exec_always --no-startup-id "pkill redshift; redshift"
 
 #-------------------------#
 #        polybar          #
