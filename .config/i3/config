@@ -170,9 +170,6 @@ mode "resize" {
 
 # Set border size
 for_window [class="^.*"] border pixel 2
-#for_window [class="^.*"] border none
-#for_window [class="albert"] border none
-#for_window [class="Synapse"] border none
 
 # Window colors
 #                        border      backgrnd    text       indicator
