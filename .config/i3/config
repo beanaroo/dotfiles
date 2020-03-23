@@ -173,7 +173,7 @@ for_window [class="^.*"] border pixel 2
 
 # Window colors
 #                        border      backgrnd    text       indicator
-client.focused          $base02     $base02     $base05     $base02
+client.focused          $base01     $base01     $base05     $base02
 client.focused_inactive $base00     $base00     $base05     $base00
 client.unfocused        $base00     $base00     $base03     $base00
 client.urgent           $red        $red        $base05     $red
