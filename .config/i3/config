@@ -266,7 +266,7 @@ exec --no-startup-id        "unclutter"
 exec_always --no-startup-id "pkill dunst; dunst"
 
 # Lock screen
-#exec_always --no-startup-id    "i3lock -u -i $HOME/.local/share/locked.png"
+#exec_always --no-startup-id    "~/.local/bin/lock.sh"
 
 # Redshift
 exec --no-startup-id        "redshift"
