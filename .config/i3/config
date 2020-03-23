@@ -44,7 +44,8 @@ set $transparent #00000000
 #-------------------------#
 
 # Application Launcher
-bindsym $mod+grave exec     "zsh -c 'rofi -m -5 -show run'"
+bindsym $mod+grave exec      "zsh -c 'rofi -m -5 -show drun'"
+bindsym $mod+Escape exec     "zsh -c 'rofi -m -5 -show drun'"
 
 # Window Switcher
 bindsym $mod+Tab exec       "rofi -show window"
