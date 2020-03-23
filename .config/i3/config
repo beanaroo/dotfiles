@@ -248,7 +248,7 @@ exec_always --no-startup-id "autorandr -c"
 exec_always --no-startup-id  "sleep 5; ~/.fehbg"
 
 # Window Compositing
-exec_always --no-startup-id "picom --experimental-backends"
+exec_always --no-startup-id "pkill picom; picom --experimental-backends"
 
 # Load Xresources
 exec_always --no-startup-id  "xrdb -merge ~/.Xresources"
