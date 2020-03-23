@@ -236,7 +236,7 @@ mode --pango_markup $sysmenu {
 exec --no-startup-id        "autorandr -c"
 
 # Window Compositing
-exec_always --no-startup-id "compton --config $HOME/.config/compton/config"
+exec_always --no-startup-id "picom --experimental-backends"
 
 # Set desktop wallpaper 
 exec --no-startup-id        "hsetroot -solid '#2B303B'"
