@@ -59,15 +59,6 @@ Xft.rgba:       rgb
 *.color20:      base04
 *.color21:      base06
 
-! XTerm Terminal Emulator
-xterm*termName:         xterm-256color
-xterm*locale:           true
-xterm*saveLines:        8192
-xterm*faceName:         monospace
-xterm*faceSize:         10
-xterm*borderWidth:      0
-XTerm.utf8:             1
-
 ! Rofi
 rofi.key-run:           SuperL+grave
 rofi.key-window:        SuperL+Tab
