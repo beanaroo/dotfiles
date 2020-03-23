@@ -271,45 +271,7 @@ exec_always --no-startup-id "pkill dunst; dunst"
 # Redshift
 exec_always --no-startup-id "pkill redshift; redshift"
 
-#-------------------------#
-#        polybar          #
-#-------------------------#
-
+# Polybar
 exec_always --no-startup-id "~/.local/bin/polystart.sh"
 exec --no-startup-id        "~/.local/bin/xeventbind resolution ~/.local/bin/polystart.sh"
-
-
-#-------------------------#
-#         i3bar           #
-#-------------------------#
-
-# Start i3bar to display a workspace bar
-#bar {
-#   
-#        #i3bar_command i3bar -t
-#        position        top
-#        #height          36
-#        tray_output     none
-#        #workspace_buttons no
-#        #binding_mode_indicator no
-#
-#        #colors {
-#        #    background  $000000
-#        #}
-#
-#        strip_workspace_numbers yes
-#        status_command  "i3blocks  -c $HOME/.config/i3/i3blocks.conf"
-#        colors {
-#            #                    border      backgrnd    text
-#            background                      $base00
-#            statusline                                  $base05
-#            separator           $base04
-#
-#            focused_workspace   $base04     $base03     $base05
-#            active_workspace    $base03     $base02     $base04
-#            inactive_workspace  $base02     $base01     $base03
-#            urgent_workspace    $base03     $red        $base05
-#            binding_mode        $base04       $blue       $base00
-#        }
-#}
 
