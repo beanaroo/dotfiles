@@ -1,4 +1,0 @@
-#!/bin/sh
-
-printf '\n%.0s' {1..2}
-ping -c 1 -W 2 $BLOCK_INSTANCE > /dev/null && echo '#a3be8c' || echo '#bf616a'
