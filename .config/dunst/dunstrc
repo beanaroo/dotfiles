@@ -82,6 +82,11 @@
     msg_urgency = critical
     format = <span foreground="#bf616a" font="13"><b>%s</b></span>\n%b
 
+[slack]
+    appname = Slack
+    format = <span foreground="#b48ead" font="13"><b>%s</b></span>\nNew Message
+    icon = /usr/share/icons/Papirus/48x48/apps/slack.svg
+
 [play_sound]
     summary = "*"
     script = ~/.config/dunst/play_sound.sh
