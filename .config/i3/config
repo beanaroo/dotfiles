@@ -124,6 +124,8 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # Move focused workspace to monitor
 bindsym $mod+Shift+bracketleft move workspace to output left
 bindsym $mod+Shift+bracketright move workspace to output right
+bindsym $mod+Shift+semicolon move workspace to output down
+bindsym $mod+Shift+apostrophe move workspace to output up
 
 #-------------------------#
 #       Containers        #
