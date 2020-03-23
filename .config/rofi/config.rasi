@@ -1,0 +1,4 @@
+configuration {
+  terminal: "kitty";
+  run-shell-command: "{terminal} -e \"zsh -ic {cmd}\"";
+}
