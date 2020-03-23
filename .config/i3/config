@@ -72,15 +72,14 @@ bindsym XF86MonBrightnessDown exec  "light -U 5"
 bindsym XF86AudioRaiseVolume exec   "pamixer -i 5"
 bindsym XF86AudioLowerVolume exec   "pamixer -d 5"
 bindsym XF86AudioMute exec          "pamixer -t"
+
 # Media player controls
 bindsym XF86AudioPlay exec          "playerctl play-pause"
 bindsym XF86AudioNext exec          "playerctl next"
 bindsym XF86AudioPrev exec          "playerctl previous"
 
 ## Screenshots
-bindsym --release Print exec        "scrot -z ~/incoming/screenshots/%Y-%m-%d_%k:%M:%S.png"
-bindsym --release Mod1+Sys_Req exec "scrot -zu ~/incoming/screenshots/%Y-%m-%d_%k:%M:%S.png"
-bindsym --release Shift+Print exec  "scrot -zs ~/incoming/screenshots/%Y-%m-%d_%k:%M:%S.png"
+bindsym --release Print exec        "flameshot gui"
 
 #-------------------------#
 #       Workspaces        #
