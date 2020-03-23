@@ -242,7 +242,7 @@ mode --pango_markup $sysmenu {
 #-------------------------#
 
 # Monitor Layout
-exec --no-startup-id        "autorandr -c"
+exec_always --no-startup-id "autorandr -c"
 
 # Window Compositing
 exec_always --no-startup-id "picom --experimental-backends"
