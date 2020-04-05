@@ -6,7 +6,7 @@ if [[ $? -eq 0 ]]; then
 fi
 
 if [[ $player_status = "Playing" ]]; then
-    echo "%{F#D08770}%{T3} %{T-} $metadata"
+    echo "%{F#B48EAD}%{T3} %{T-} $metadata"
 elif [[ $player_status = "Paused" ]]; then
     echo "%{F#65737E}%{T3} %{T-} $metadata"
 else

@@ -1,12 +1,3 @@
-;=====================================================
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
-;
-;   The README contains alot of information
-;
-;=====================================================
-
 [colors]
 base00  = #2B303B
 base01  = #343D46
@@ -28,15 +19,17 @@ brown   = #AB7967
 [global/wm]
 margin-bottom = 5
 
-[bar/main]
-monitor = ${env:MONITOR:eDP1}
-width = 100%
-height = 28
+[bar/top]
+monitor = ${env:MONITOR:eDP-1}
+width = 96%
+height = 32
+offset-x = 2%
+offset-y = 8
 
 background = ${colors.base00}
 foreground = ${colors.base05}
 
-overline-size = 2
+overline-size = 3
 overline-color = ${colors.red}
 underline-size = 3
 underline-color = ${colors.base05}
@@ -46,19 +39,59 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = monospace:size=10;0
-font-1 = monospace:size=10;2
-font-2 = FontAwesome:pixelsize=12;1
+font-0 = monospace:size=10;2
+font-1 = monospace:size=11:style=Bold;2
+font-2 = FontAwesome:size=11:style=Retina;3
+font-3 = Weather Icons:size=11:style=Regular;3
 
 modules-left = i3
-modules-center =
-modules-right = hamster music volume pamixer rootfs homefs memory cpu temperature eth wlan redshift battery date
+modules-center = date weather
+modules-right = pulseaudio vpn gl-runner eth wlan redshift battery
 
-;wm-restack = i3
-;override-redirect = true
+wm-restack = i3
+override-redirect = true
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
+
+[bar/bottom]
+monitor = ${env:MONITOR:eDP-1}
+width = 96%
+height = 32
+offset-x = 2%
+offset-y = 8
+bottom = true
+
+background = ${colors.base00}
+foreground = ${colors.base05}
+
+overline-size = 3
+overline-color = ${colors.red}
+underline-size = 3
+underline-color = ${colors.base05}
+
+padding-left = 2
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = monospace:size=10;2
+font-1 = monospace:size=11:style=Bold;2
+font-2 = FontAwesome:size=11:style=Retina;3
+
+modules-left = music
+modules-center = hamster
+modules-right = rootfs homefs memory cpu temperature
+
+wm-restack = i3
+override-redirect = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+tray-position = right
+tray-detached = true
+tray-offset-x = -450
 
 [module/i3]
 type = internal/i3
@@ -71,6 +104,7 @@ wrapping-scroll = false
 label-mode-padding = 1
 label-mode-foreground = ${colors.base01}
 label-mode-background = ${colors.blue}
+label-mode-underline = ${colors.red}
 
 label-focused = %{T3}%name%
 label-focused-foreground = ${colors.base06}
@@ -97,7 +131,7 @@ label-visible-padding = 1
 type = custom/script
 interval = 2
 
-label = %output:0:50:...%
+label = %output:0:100:…%
 exec = ~/.config/polybar/music.sh
 
 [module/hamster]
@@ -109,41 +143,48 @@ exec = ~/.config/polybar/hamster.sh
 format-prefix = %{T3} %{T-}
 format-prefix-foreground = ${colors.magenta}
 
-[module/pamixer]
-type = custom/script
-interval = 1
-
-exec = ~/.config/polybar/pamixer.sh
-
-click-left = pamixer -t
-
-scroll-up = pamixer -i 5
-scroll-down = pamixer -d 5
-
-;[module/volume]
-;type = internal/volume
+; Workaround for polybar regression
+;[module/pamixer]
+;type = custom/script
+;interval = 1
 ;
-;format-volume = <label-volume> <bar-volume>
-;label-volume = %{T3}
-;label-volume-foreground = ${colors.cyan}
+;exec = ~/.config/polybar/pamixer.sh
 ;
-;format-muted = <label-muted>
-;format-muted-foreground = ${colors.base03}
-;label-muted =  ────────
+;click-left = pamixer -t
 ;
-;bar-volume-width = 10
-;bar-volume-foreground-0 = ${colors.green}
-;bar-volume-foreground-1 = ${colors.green}
-;bar-volume-foreground-2 = ${colors.green}
-;bar-volume-foreground-3 = ${colors.green}
-;bar-volume-foreground-4 = ${colors.yellow}
-;bar-volume-foreground-5 = ${colors.orange}
-;bar-volume-foreground-6 = ${colors.red}
-;bar-volume-gradient = false
-;bar-volume-indicator = |
-;bar-volume-fill = ━
-;bar-volume-empty = ─
-;bar-volume-empty-foreground = ${colors.base05}
+;scroll-up = pamixer -i 5
+;scroll-down = pamixer -d 5
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+use-ui-max = true
+interval = 5
+
+label-volume = %{T3}
+label-volume-foreground = ${colors.cyan}
+format-volume = <label-volume> <bar-volume>
+
+label-muted = %{T3}  ──────────
+format-muted = <label-muted>
+format-muted-foreground = ${colors.base03}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.yellow}
+bar-volume-foreground-5 = ${colors.orange}
+bar-volume-foreground-6 = ${colors.red}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-fill = ━
+bar-volume-empty = ─
+bar-volume-empty-foreground = ${colors.base05}
+
+click-right = pavucontrol &
+; click-middle =
 
 [module/rootfs]
 type = internal/fs
@@ -200,18 +241,22 @@ format = <bar-used>
 format-prefix = %{T3} %{T-}
 format-prefix-foreground = ${colors.blue}
 
-bar-used-width = 6
+bar-used-width = 10
 bar-used-format = %fill%%empty%
 bar-used-foreground-0 = ${colors.green}
 bar-used-foreground-1 = ${colors.green}
 bar-used-foreground-2 = ${colors.green}
 bar-used-foreground-3 = ${colors.green}
-bar-used-foreground-4 = ${colors.yellow}
-bar-used-foreground-5 = ${colors.orange}
-bar-used-foreground-6 = ${colors.red}
+bar-used-foreground-4 = ${colors.green}
+bar-used-foreground-5 = ${colors.green}
+bar-used-foreground-6 = ${colors.yellow}
+bar-used-foreground-7 = ${colors.yellow}
+bar-used-foreground-8 = ${colors.orange}
+bar-used-foreground-9 = ${colors.red}
+bar-used-foreground-10 = ${colors.red}
 bar-used-gradient = false
-bar-used-fill = ▉
-bar-used-empty = ▉
+bar-used-fill = █
+bar-used-empty = █
 bar-used-empty-foreground = ${colors.base03}
 
 [module/cpu]
@@ -237,15 +282,16 @@ bar-load-empty-foreground = ${colors.base03}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 2
-warn-temperature = 60
+thermal-zone = 0
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input
+warn-temperature = 70
 
 format = <ramp> <label>
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${colors.red}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.orange}
 
 ramp-0 = %{T3}
@@ -278,7 +324,7 @@ label-disconnected = %{T3}" "
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp0s20f3
 interval = 1.0
 
 format-connected = <ramp-signal>
@@ -300,6 +346,22 @@ ramp-signal-4 = %{T3}
 ramp-signal-4-foreground = ${colors.green}
 ramp-signal-5 = %{T3}
 ramp-signal-5-foreground = ${colors.green}
+ramp-signal-6 = %{T3}
+ramp-signal-6-foreground = ${colors.green}
+
+[module/vpn]
+type = custom/script
+interval = 3
+
+exec = ~/.config/polybar/vpn.sh
+click-left = ~/.local/bin/vpn-connect
+
+[module/gl-runner]
+type = custom/script
+interval = 3
+
+exec = ~/.config/polybar/gl-runner.sh
+click-left = ~/.local/bin/vpn-connect
 
 [module/redshift]
 type = custom/script
@@ -310,15 +372,15 @@ exec = ~/.config/polybar/redshift.sh
 [module/battery]
 type = internal/battery
 battery = BAT0
-adapter = ADP1
-full-at = 98
+adapter = AC
+full-at = 77
 
 format-charging = <animation-charging>
 
 format-discharging = <ramp-capacity>
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.green}
+label-full = ""
+label-full-foreground = ${colors.green}
 
 ramp-capacity-0 = %{T3}
 ramp-capacity-0-foreground = ${colors.red}
@@ -340,17 +402,18 @@ animation-charging-foreground = ${colors.yellow}
 animation-charging-framerate = 750
 
 [module/date]
-type = internal/date
+type = custom/script
 interval = 5
-
-date = %a %-e %b
-time = %H:%M
-
-;format-prefix = 
-;format-prefix-foreground = ${colors.base05}
-;;format-underline = ${colors.magenta}
-
-label = %{T3}%{T-} %date% %{T3}%{T-} %time%
 label-foreground = ${colors.blue}
+
+exec = ~/.config/polybar/date.sh
+
+[module/weather]
+type = custom/script
+interval = 30
+label-foreground = ${colors.blue}
+
+exec = ~/.config/polybar/weather.sh
+
 
 ; vim:ft=dosini
