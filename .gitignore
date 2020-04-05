@@ -33,3 +33,5 @@ irc.conf
 .zstomb
 .zwork
 
+# python
+__pycache__/

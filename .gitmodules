@@ -5,3 +5,6 @@
 [submodule "prezto"]
     path = .config/zsh/.zprezto
     url = https://github.com/sorin-ionescu/prezto.git
+[submodule ".config/ranger/plugins/ranger_devicons"]
+	path = .config/ranger/plugins/ranger_devicons
+	url = https://github.com/alexanderjeurissen/ranger_devicons
