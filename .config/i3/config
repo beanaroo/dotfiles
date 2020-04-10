@@ -208,6 +208,7 @@ bindsym $mod+space focus mode_toggle
 # Permanent floating windows
 for_window [instance="Msgcompose" class="Thunderbird"] floating enable
 for_window [window_role="Preferences" class="Thunderbird"] floating enable
+for_window [window_type="notification"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Slack" floating] move container to workspace current
 for_window [class="JetBrains Toolbox"] floating enable
