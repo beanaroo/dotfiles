@@ -72,6 +72,7 @@ bindsym XF86MonBrightnessDown exec  "light -U 5"
 bindsym XF86AudioRaiseVolume exec   "pamixer -i 5"
 bindsym XF86AudioLowerVolume exec   "pamixer -d 5"
 bindsym XF86AudioMute exec          "pamixer -t"
+bindsym XF86AudioMicMute exec       "pamixer -t --default-source"
 
 # Media player controls
 bindsym XF86AudioPlay exec          "playerctl play-pause"
