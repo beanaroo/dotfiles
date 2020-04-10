@@ -46,7 +46,7 @@ font-3 = Weather Icons:size=11:style=Regular;3
 
 modules-left = i3
 modules-center = date weather
-modules-right = pulseaudio vpn gl-runner eth wlan redshift battery
+modules-right = microphone pulseaudio vpn gl-runner eth wlan redshift battery
 
 wm-restack = i3
 override-redirect = true
@@ -154,6 +154,13 @@ format-prefix-foreground = ${colors.magenta}
 ;
 ;scroll-up = pamixer -i 5
 ;scroll-down = pamixer -d 5
+
+[module/microphone]
+type = custom/script
+interval = 1
+
+exec = ~/.config/polybar/microphone.sh
+click-left = "pamixer -t --default-source"
 
 [module/pulseaudio]
 type = internal/pulseaudio
