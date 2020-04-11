@@ -469,6 +469,12 @@ colorscheme base16-ocean
 highlight Search ctermbg=16 ctermfg=18
 highlight IncSearch ctermbg=17 ctermfg=18
 
+" Coc.nvim sign colors
+highlight CocErrorSign ctermfg=1 ctermbg=18
+highlight CocWarningSign ctermfg=16 ctermbg=18
+highlight CocInfoSign ctermfg=3 ctermbg=18
+highlight CocHintSign ctermfg=5 ctermbg=18
+
 " ╭────────────────────────────────────────────────────────────────────────────╮
 " │                             Filetype Config                                │
 " ╰────────────────────────────────────────────────────────────────────────────╯
